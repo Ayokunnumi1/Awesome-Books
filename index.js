@@ -14,8 +14,9 @@ function AddBook (title, author) {
 function createBook() {
     const title = titleInput.value.trim();
     const author = authorInput.value.trim();
-        if (title && author) {
+        if (title && author) { 
             const userAddBook = new AddBook(title, author);
+            console.log(userAddBook);
             books.push(userAddBook)
     }
     titleInput.value = '';
@@ -27,20 +28,34 @@ function createBook() {
 addButton.addEventListener('click', function bookCollection() {
     createBook();
     displayBooks();
+    setToLocalStorage();
     });
 
+// Create function to set data from the book Array of objects into the browser storage
+// firstly convert the book Array to a string
+function setToLocalStorage() {
+  localStorage.setItem('bookArray', JSON.stringify(books));
+}
+
+function getFromLocalStorage() {
+  const getData = localStorage.getItem('bookArray');
+  if (getData) {
+    books = JSON.parse(getData);
+  }
+}
 
 // create a book function that displays the book objects present in the books array
 function displayBooks() {
+    getFromLocalStorage();
     bookCollectionContainer.innerHTML = '';
-    // create paragraph html containers that would house the user newly created book "title"
-    books.forEach(book => {
+    // create paragraph html containers that would house the user each newly created book "title"
+    books.forEach((book,index)  => {
         const bookParagraphOne = document.createElement('p');
         bookParagraphOne.setAttribute('class', 'p-one');
         bookCollectionContainer.appendChild(bookParagraphOne);
         bookParagraphOne.textContent = book.title;
 
-        // create paragraph html containers that would house the user newly created book "title"
+        // create paragraph html containers that would house the user each newly created book "title"
         const bookParagraphTwo = document.createElement('p');
         bookParagraphTwo.setAttribute('class', 'p-two');
         bookCollectionContainer.appendChild(bookParagraphTwo);
@@ -50,7 +65,11 @@ function displayBooks() {
         removeButton.setAttribute('class', 'remove-button');
         bookCollectionContainer.appendChild(removeButton);
         removeButton.textContent = 'remove';
-
+        removeButton.addEventListener('click', () => {
+            books = books.filter((book, i) => i !== index)
+            displayBooks();
+        })
     });
 }
+
 
