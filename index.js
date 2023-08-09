@@ -38,7 +38,7 @@ function getFromLocalStorage() {
 
 // create a book function that displays the book objects present in the books array
 function displayBooks() {
-  // getFromLocalStorage();
+  getFromLocalStorage();
   bookCollectionContainer.innerHTML = '';
   // create paragraph html containers that would house the user each newly created book "title"
   books.forEach((book, index) => {
@@ -47,7 +47,7 @@ function displayBooks() {
     bookCollectionContainer.appendChild(bookParagraphOne);
     bookParagraphOne.textContent = book.title;
 
-    // create paragraph html containers that would house the user each newly created book "title"
+    // create paragraph html containers that would house the user each newly created book "author"
     const bookParagraphTwo = document.createElement('p');
     bookParagraphTwo.setAttribute('class', 'p-two');
     bookCollectionContainer.appendChild(bookParagraphTwo);
@@ -58,7 +58,8 @@ function displayBooks() {
     bookCollectionContainer.appendChild(removeButton);
     removeButton.textContent = 'remove';
     removeButton.addEventListener('click', () => {
-      books = books.splice(index, 1);
+      books = books.filter((book, i) => i !== index);
+      setToLocalStorage();
       //   console.log(books.splice(index, 1));
       displayBooks();
     });
@@ -69,6 +70,6 @@ function displayBooks() {
 // to produce the book details inputted by user
 addButton.addEventListener('click', () => {
   createBook();
-  displayBooks();
   setToLocalStorage();
+  displayBooks();
 });
