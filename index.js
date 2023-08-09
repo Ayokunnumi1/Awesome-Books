@@ -2,7 +2,16 @@ const titleInput = document.querySelector('#title-input');
 const authorInput = document.querySelector('#author-input');
 const addButton = document.querySelector('#add-button');
 const bookCollectionContainer = document.querySelector('#book-collection-container');
-let books = [];
+
+function getFromLocalStorage() {
+  const getData = localStorage.getItem('bookArray');
+  if (getData) {
+    return JSON.parse(getData);
+  }
+  return [];
+  // return getData ? JSON.parse(getData) : [];
+}
+let books = getFromLocalStorage();
 
 // constructor function to generate objects from the book title & author added by the user
 function AddBook(title, author) {
@@ -29,16 +38,8 @@ function setToLocalStorage() {
   localStorage.setItem('bookArray', JSON.stringify(books));
 }
 
-function getFromLocalStorage() {
-  const getData = localStorage.getItem('bookArray');
-  if (getData) {
-    books = JSON.parse(getData);
-  }
-}
-
 // create a book function that displays the book objects present in the books array
 function displayBooks() {
-  getFromLocalStorage();
   bookCollectionContainer.innerHTML = '';
   // create paragraph html containers that would house the user each newly created book "title"
   books.forEach((book, index) => {
@@ -58,9 +59,13 @@ function displayBooks() {
     bookCollectionContainer.appendChild(removeButton);
     removeButton.textContent = 'remove';
     removeButton.addEventListener('click', () => {
-      books = books.filter((book, i) => i !== index);
+      books = books.filter((book, i) => (i !== index));
+      // i is the index of the removed button while index refers to each index in the books array
+      // if the index of the filter / remove button is the same as the index of the for each loop,
+      // delete /remove that object, ( i === index) remove
+      // if not (i !== index) save the remainder objects that don't match,
+      // that was not removed in the setToLocalStorage & display them
       setToLocalStorage();
-      //   console.log(books.splice(index, 1));
       displayBooks();
     });
   });
@@ -71,5 +76,7 @@ function displayBooks() {
 addButton.addEventListener('click', () => {
   createBook();
   setToLocalStorage();
+});
+window.addEventListener('DOMContentLoaded', () => {
   displayBooks();
 });
