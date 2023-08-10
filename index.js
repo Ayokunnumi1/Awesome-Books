@@ -1,35 +1,45 @@
-const titleInput = document.querySelector('#title-input');
-const authorInput = document.querySelector('#author-input');
-const addButton = document.querySelector('#add-button');
-const bookCollectionContainer = document.querySelector('#book-collection-container');
+class BookLibrary {
+static titleInput = document.querySelector('#title-input');
 
-function getFromLocalStorage() {
-  const getData = localStorage.getItem('bookArray');
-  if (getData) {
-    return JSON.parse(getData);
+static authorInput = document.querySelector('#author-input');
+
+static addButton = document.querySelector('#add-button');
+
+static bookCollectionContainer = document.querySelector('#book-collection-container');
+
+constructor() {
+  this.books = getFromLocalStorage();
+}
+
+static getFromLocalStorage() {
+  this.getData = localStorage.getItem('bookArray');
+  if (this.getData) {
+    return JSON.parse(this.getData);
   }
   return [];
-  // return getData ? JSON.parse(getData) : [];
 }
-let books = getFromLocalStorage();
 
-// constructor function to generate objects from the book title & author added by the user
-function AddBook(title, author) {
+AddBook(title, author) {
   this.title = title;
   this.author = author;
 }
 
-// create a function that add books made by the constructor function & push to the books Array
-function createBook() {
-  const title = titleInput.value.trim();
-  const author = authorInput.value.trim();
-  if (title && author) {
-    const userAddBook = new AddBook(title, author);
-    // console.log(userAddBook);
-    books.push(userAddBook);
+static getTitleInput() {
+  return BookLibrary.titleInput.value.trim();
+}
+
+static getAuthorInput() {
+  return BookLibrary.authorInput.value.trim();
+}
+
+createBook() {
+  if (BookLibrary.titleInput() && BookLibrary.authorInput()) {
+    const userAddBook = new AddBook(this.title, this.author);
+    this.books.push(userAddBook);
   }
-  titleInput.value = '';
-  authorInput.value = '';
+  BookLibrary.titleInput = '';
+  BookLibrary.value = '';
+}
 }
 
 // Create function to set data from the book Array of objects into the browser storage
