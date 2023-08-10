@@ -49,15 +49,10 @@ class BookLibrary {
     BookLibrary.getFromLocalStorage();
     bookCollectionContainer.innerHTML = '';
     BookLibrary.books.forEach((book, index) => {
-      const bookParagraphOne = document.createElement('p');
-      bookParagraphOne.setAttribute('class', 'p-one');
-      bookParagraphOne.textContent = book.title;
-      bookCollectionContainer.appendChild(bookParagraphOne);
-
-      const bookParagraphTwo = document.createElement('p');
-      bookParagraphTwo.setAttribute('class', 'p-two');
-      bookParagraphTwo.textContent = book.author;
-      bookCollectionContainer.appendChild(bookParagraphTwo);
+      const bookParagraph = document.createElement('p');
+      bookParagraph.setAttribute('class', 'paragraph-text');
+      bookParagraph.textContent = `"${book.title}" by ${book.author} `;
+      bookCollectionContainer.appendChild(bookParagraph);
 
       const removeButton = document.createElement('button');
       removeButton.setAttribute('class', 'remove-button');
@@ -87,12 +82,14 @@ class BookLibrary {
   }
 }
 
-BookLibrary.updateCurrentTime();
-setInterval(BookLibrary.updateCurrentTime, 1000);
-
-addButton.addEventListener('click', () => {
+addButton.addEventListener('click', (e) => {
+  e.preventDefault();
   BookLibrary.createBook();
   BookLibrary.setToLocalStorage();
   BookLibrary.displayBooks();
 });
-window.addEventListener('DOMContentLoaded', BookLibrary.displayBooks);
+window.addEventListener('DOMContentLoaded', () => {
+  BookLibrary.displayBooks();
+  BookLibrary.updateCurrentTime();
+  setInterval(BookLibrary.updateCurrentTime, 1000);
+});
