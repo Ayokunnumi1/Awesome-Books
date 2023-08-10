@@ -4,6 +4,7 @@ const titleInput = document.querySelector('#title-input');
 const authorInput = document.querySelector('#author-input');
 const addButton = document.querySelector('#add-button');
 const bookCollectionContainer = document.querySelector('#book-collection-container');
+const currentTime = document.querySelector('.current-time');
 
 class BookLibrary {
   constructor(title, author) {
@@ -69,11 +70,29 @@ class BookLibrary {
       bookCollectionContainer.appendChild(removeButton);
     });
   }
+
+  static updateCurrentTime() {
+    const currentTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const options = {
+      timeZone: currentTimeZone,
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    };
+    const theCurrentTime = new Date().toLocaleString(undefined, options);
+    currentTime.textContent = `The Current Time: ${theCurrentTime}`;
+  }
 }
+
+BookLibrary.updateCurrentTime();
+setInterval(BookLibrary.updateCurrentTime, 1000);
 
 addButton.addEventListener('click', () => {
   BookLibrary.createBook();
   BookLibrary.setToLocalStorage();
   BookLibrary.displayBooks();
 });
-window.addEventListener('DOMContentLoaded', BookLibrary.displayBooks());
+window.addEventListener('DOMContentLoaded', BookLibrary.displayBooks);

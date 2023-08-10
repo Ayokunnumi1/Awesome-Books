@@ -19,14 +19,23 @@
 .list-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   cursor: pointer;
-
-  /* border: 3px solid red; */
 }
 
 li {
-  border: 1px solid lightgray;
   border-radius: 5px;
   padding: 5px;
+}
+
+span {
+  width: 3px;
+  height: 20px;
+  background-color: black;
+}
+
+.current-time {
+  border: 3px solid red;
 }
