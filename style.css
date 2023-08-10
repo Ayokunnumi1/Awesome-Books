@@ -1,22 +1,32 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-/* 
-#form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
 }
 
-#book-collection-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 100px;
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin: 5px 2% 5px 2%;
+  border: 3px solid black;
+}
 
-} */
+.list-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  cursor: pointer;
+
+  /* border: 3px solid red; */
+}
+
+li {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 5px;
+}
