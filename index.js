@@ -49,14 +49,18 @@ class BookLibrary {
     BookLibrary.getFromLocalStorage();
     bookCollectionContainer.innerHTML = '';
     BookLibrary.books.forEach((book, index) => {
+      const bookItem = document.createElement('div');
+      bookItem.setAttribute('class', 'book-item');
+      bookCollectionContainer.appendChild(bookItem);
+
       const bookParagraph = document.createElement('p');
       bookParagraph.setAttribute('class', 'list-paragraph-text');
       bookParagraph.textContent = `"${book.title}" by ${book.author} `;
-      bookCollectionContainer.appendChild(bookParagraph);
+      bookItem.appendChild(bookParagraph);
 
       const removeButtonContainer = document.createElement('div');
       removeButtonContainer.setAttribute('class', 'remove-button-container');
-      bookCollectionContainer.appendChild(removeButtonContainer);
+      bookItem.appendChild(removeButtonContainer);
 
       const removeButton = document.createElement('button');
       removeButton.setAttribute('class', 'remove-button');
