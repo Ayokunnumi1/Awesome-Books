@@ -5,6 +5,12 @@ const authorInput = document.querySelector('#author-input');
 const addButton = document.querySelector('#add-button');
 const bookCollectionContainer = document.querySelector('#book-collection-container');
 const currentTime = document.querySelector('.current-time');
+const addNewLink = document.querySelector('.add-new-link');
+const formSection = document.querySelector('.form-section');
+const listLink = document.querySelector('.list-link');
+const list = document.querySelector('.list');
+const contactLink = document.querySelector('.contact-link');
+const contactInfo = document.querySelector('.contact-info');
 
 class BookLibrary {
   constructor(title, author) {
@@ -94,10 +100,26 @@ addButton.addEventListener('click', (e) => {
   e.preventDefault();
   BookLibrary.createBook();
   BookLibrary.setToLocalStorage();
-  BookLibrary.displayBooks();
 });
 window.addEventListener('DOMContentLoaded', () => {
   BookLibrary.displayBooks();
   BookLibrary.updateCurrentTime();
   setInterval(BookLibrary.updateCurrentTime, 1000);
+  list.style.display = 'flex';
+});
+addNewLink.addEventListener('click', () => {
+  formSection.style.display = 'flex';
+  list.style.display = 'none';
+  contactInfo.style.display = 'none';
+});
+listLink.addEventListener('click', () => {
+  BookLibrary.displayBooks();
+  list.style.display = 'flex';
+  formSection.style.display = 'none';
+  contactInfo.style.display = 'none';
+});
+contactLink.addEventListener('click', () => {
+  contactInfo.style.display = 'flex';
+  list.style.display = 'none';
+  formSection.style.display = 'none';
 });

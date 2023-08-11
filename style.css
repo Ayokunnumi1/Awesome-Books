@@ -21,6 +21,7 @@ body {
   padding: 15px;
   margin: 5px 2% 5px 2%;
   border: 3px solid black;
+  border-radius: 8px;
   background-color: rgba(244, 237, 228);
 }
 
@@ -31,7 +32,7 @@ h2 {
 h3 {
   font-style: italic;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 40px;
   color: white;
   text-shadow:
     -1px -1px 0 black,
@@ -50,8 +51,19 @@ h3 {
 }
 
 li {
-  border-radius: 5px;
   padding: 5px;
+}
+
+.list {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.list-link:hover,
+.add-new-link:hover,
+.contact-link:hover {
   color: black;
 }
 
@@ -68,16 +80,11 @@ span {
   color: white;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 #book-collection-container {
   border: 3px solid black;
   width: 95%;
   background-color: rgba(130, 94, 92);
+  border-radius: 10px;
 }
 
 .book-item {
@@ -85,6 +92,7 @@ span {
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
+  border-radius: 8px;
 }
 
 #book-collection-container .book-item:nth-child(odd) {
@@ -106,8 +114,72 @@ span {
 
 .remove-button:hover {
   border: 3px solid rgba(227, 186, 143);
+  border-radius: 5px;
 }
 
 .list-paragraph-text {
   flex-basis: 47.5%;
+}
+
+.form-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+}
+
+#title-input,
+#author-input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid black;
+}
+
+.add-button-container {
+  display: flex;
+  justify-content: right;
+}
+
+#add-button {
+  width: 80px;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 3px solid black;
+}
+
+#add-button:hover {
+  background-color: rgba(130, 94, 92);
+  color: white;
+}
+
+.contact-info {
+  color: white;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  font-family: Cuprum, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+}
+
+.contact-paragraph {
+  padding: 10px;
+}
+
+.contact-list::before {
+  content: '-';
 }
