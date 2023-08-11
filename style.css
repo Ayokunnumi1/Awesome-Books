@@ -61,9 +61,9 @@ li {
   gap: 10px;
 }
 
-.list-link:hover,
-.add-new-link:hover,
-.contact-link:hover {
+.list-link a:hover,
+.add-new-link a:hover,
+.contact-link a:hover {
   color: black;
 }
 
@@ -83,8 +83,10 @@ span {
 #book-collection-container {
   border: 3px solid black;
   width: 95%;
+  height: 350px;
   background-color: rgba(130, 94, 92);
-  border-radius: 10px;
+  border-radius: 15px;
+  overflow-y: scroll;
 }
 
 .book-item {
@@ -109,6 +111,7 @@ span {
   padding: 5px;
   border-radius: 5px;
   border: 2px solid black;
+  box-shadow: #0004 0 0 3px;
   cursor: pointer;
 }
 
@@ -182,4 +185,21 @@ span {
 
 .contact-list::before {
   content: '-';
+}
+
+footer {
+  border: 3px solid black;
+  width: 95%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 0;
+  margin-left: 2.5%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(244, 237, 228);
+  border-radius: 8px;
+  padding: 10px;
 }
