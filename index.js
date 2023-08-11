@@ -50,9 +50,13 @@ class BookLibrary {
     bookCollectionContainer.innerHTML = '';
     BookLibrary.books.forEach((book, index) => {
       const bookParagraph = document.createElement('p');
-      bookParagraph.setAttribute('class', 'paragraph-text');
+      bookParagraph.setAttribute('class', 'list-paragraph-text');
       bookParagraph.textContent = `"${book.title}" by ${book.author} `;
       bookCollectionContainer.appendChild(bookParagraph);
+
+      const removeButtonContainer = document.createElement('div');
+      removeButtonContainer.setAttribute('class', 'remove-button-container');
+      bookCollectionContainer.appendChild(removeButtonContainer);
 
       const removeButton = document.createElement('button');
       removeButton.setAttribute('class', 'remove-button');
@@ -62,7 +66,7 @@ class BookLibrary {
         BookLibrary.setToLocalStorage();
         BookLibrary.displayBooks();
       }),
-      bookCollectionContainer.appendChild(removeButton);
+      removeButtonContainer.appendChild(removeButton);
     });
   }
 
