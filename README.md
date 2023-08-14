@@ -51,7 +51,7 @@ This repository contains the source codes for a book library. It showcases my sk
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://ayokunnumi1.github.io/Conference-Page/)
+- [Live Demo Link](https://ayokunnumi1.github.io/Awesome-Books/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
