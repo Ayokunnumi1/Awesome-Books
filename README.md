@@ -44,6 +44,7 @@ This repository contains the source codes for a book library. It showcases my sk
 - **List: A clicakable link on the navigation bar that displays the books inputted by the user**
 - **Add New:A clickable link that displays a form allowing users to input the title and author of books**
 - **Social Contact: A form allowing visitors to get in touch with me.**
+- **Date and Time: A date and time that uploads in sync with the timezone of the user**
 - **Responsive Design: The website is optimized for different devices and screen sizes.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
