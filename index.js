@@ -13,12 +13,12 @@ const contactLink = document.querySelector('.contact-link');
 const contactInfo = document.querySelector('.contact-info');
 
 class BookLibrary {
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
-  }
+  // constructor(title, author) {
+  //   this.title = title;
+  //   this.author = author;
+  // }
 
-  static books = [];
+  static books = this.getFromLocalStorage();
 
   static getFromLocalStorage() {
     const getData = localStorage.getItem('bookArray');
@@ -37,24 +37,24 @@ class BookLibrary {
   }
 
   static createBook() {
-    const title = BookLibrary.getTitleInput();
-    const author = BookLibrary.getAuthorInput();
+    const title = this.getTitleInput();
+    const author = this.getAuthorInput();
     if (title && author) {
       const newBook = { title, author };
-      BookLibrary.books.push(newBook);
+      this.books.push(newBook);
     }
     titleInput.value = '';
     authorInput.value = '';
   }
 
   static setToLocalStorage() {
-    return localStorage.setItem('bookArray', JSON.stringify(BookLibrary.books));
+    return localStorage.setItem('bookArray', JSON.stringify(this.books));
   }
 
   static displayBooks() {
-    BookLibrary.getFromLocalStorage();
+    // this.getFromLocalStorage();
     bookCollectionContainer.innerHTML = '';
-    BookLibrary.books.forEach((book, index) => {
+    this.books.forEach((book, index) => {
       const bookItem = document.createElement('div');
       bookItem.setAttribute('class', 'book-item');
       bookCollectionContainer.appendChild(bookItem);
@@ -72,9 +72,9 @@ class BookLibrary {
       removeButton.setAttribute('class', 'remove-button');
       removeButton.textContent = 'remove';
       removeButton.addEventListener('click', () => {
-        BookLibrary.books = BookLibrary.books.filter((_book, i) => (i !== index));
-        BookLibrary.setToLocalStorage();
-        BookLibrary.displayBooks();
+        this.books = this.books.filter((_book, i) => (i !== index));
+        this.setToLocalStorage();
+        this.displayBooks();
       }),
       removeButtonContainer.appendChild(removeButton);
     });
